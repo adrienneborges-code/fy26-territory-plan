@@ -275,43 +275,6 @@ body {font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgro
 </head>
 <body>
 
-<!-- PASSWORD GATE -->
-<div id="pw-gate" style="display:none;position:fixed;inset:0;background:#0d1117;z-index:99999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px">
-  <div style="text-align:center;color:#fff;font-family:system-ui,sans-serif">
-    <div style="font-size:28px;font-weight:700;margin-bottom:4px">FY26 Territory Plan</div>
-    <div style="font-size:14px;color:#8b949e;margin-bottom:24px">Enter password to continue</div>
-    <div style="display:flex;gap:8px;justify-content:center">
-      <input id="pw-input" type="password" placeholder="Password" autofocus
-        style="padding:10px 14px;font-size:14px;border-radius:6px;border:1px solid #30363d;background:#161b22;color:#fff;width:220px;outline:none"
-        onkeydown="if(event.key==='Enter')checkPw()">
-      <button onclick="checkPw()"
-        style="padding:10px 20px;font-size:14px;font-weight:600;border-radius:6px;border:none;background:#238636;color:#fff;cursor:pointer">
-        Unlock
-      </button>
-    </div>
-    <div id="pw-err" style="color:#f85149;font-size:13px;margin-top:10px;min-height:18px"></div>
-  </div>
-</div>
-<script>
-(function() {
-  if (sessionStorage.getItem('fy26_unlocked') === '1') return;
-  document.getElementById('pw-gate').style.display = 'flex';
-  document.body.style.overflow = 'hidden';
-})();
-function checkPw() {
-  var v = document.getElementById('pw-input').value;
-  if (v === 'adriennefy26') {
-    sessionStorage.setItem('fy26_unlocked', '1');
-    document.getElementById('pw-gate').style.display = 'none';
-    document.body.style.overflow = '';
-  } else {
-    document.getElementById('pw-err').textContent = 'Incorrect password.';
-    document.getElementById('pw-input').value = '';
-    document.getElementById('pw-input').focus();
-  }
-}
-</script>
-
 <!-- HEADER -->
 <header class="site-header">
   <div>
@@ -384,14 +347,17 @@ function checkPw() {
 <!-- ══════════ TIER 1 TAB ══════════ -->
 <div id="tab-t1" class="tab-content active">
   <div class="tier-def">
-    <h2 style="color:var(--t1)">Tier 1 — AE-Led Outbound Priority</h2>
-    <div class="desc">Highest priority accounts with strongest Shopify Plus B2B fit. Characteristics: ~$200M+ revenue, does both B2B and DTC ecommerce, likely on a competitor platform (Adobe Commerce, BigCommerce, Salesforce Commerce Cloud, Commercetools), clear leadership changes or stated growth intent, large and established company. AE drives all outreach for these accounts.</div>
+    <h2 style="color:var(--t1)">Tier 1 — Your "Goldmine" Accounts</h2>
+    <div class="desc">Highest priority accounts with the strongest indicators of B2B ecommerce readiness. These accounts already have the infrastructure and mindset for a modern B2B solution — AE drives all outreach.</div>
     <div class="signals">
-      <span class="signal-tag">$200M+ Revenue</span>
-      <span class="signal-tag">B2B + DTC Ecommerce</span>
-      <span class="signal-tag">Competitor Platform</span>
-      <span class="signal-tag">Leadership Changes</span>
-      <span class="signal-tag">Growth Signals</span>
+      <span class="signal-tag">Existing D2C and/or B2B Checkout</span>
+      <span class="signal-tag">Customer Login Portal</span>
+      <span class="signal-tag">Wholesale Partner Section</span>
+      <span class="signal-tag">Strike-Through or Volume Pricing</span>
+      <span class="signal-tag">Catalog PDPs</span>
+      <span class="signal-tag">Dealer or Suppliers Section</span>
+      <span class="signal-tag">Gated or Blended Format</span>
+      <span class="signal-tag">Open to Modern B2B Solutions</span>
     </div>
   </div>
 
@@ -774,14 +740,16 @@ function checkPw() {
 <!-- ══════════ TIER 2 TAB ══════════ -->
 <div id="tab-t2" class="tab-content">
   <div class="tier-def">
-    <h2 style="color:var(--t2)">Tier 2 — AE + BDR Collaborative Focus</h2>
-    <div class="desc">Strong growth signals with meaningful B2B or B2B+DTC ecommerce presence. May have recent leadership changes, press coverage, or funding. AE and BDR work through ~5 accounts per week together—AE leads strategy and senior outreach, BDR executes touches and qualifies intent.</div>
+    <h2 style="color:var(--t2)">Tier 2 — Potential, But Not Perfect</h2>
+    <div class="desc">Accounts with buying intent signals but no direct checkout experience yet. They sell through alternative channels and may be risk-averse — but are open-minded enough to explore a modern B2B solution. AE + BDR work through ~5 accounts per week together.</div>
     <div class="signals">
-      <span class="signal-tag">Growth Signals</span>
-      <span class="signal-tag">B2B or B2B+DTC</span>
-      <span class="signal-tag">Ecommerce Presence</span>
-      <span class="signal-tag">Leadership / News Activity</span>
-      <span class="signal-tag">5 Accounts / Week</span>
+      <span class="signal-tag">No D2C/B2B Checkout (yet)</span>
+      <span class="signal-tag">Alternative Buying Options</span>
+      <span class="signal-tag">Sells to Big Box and SMB/MM</span>
+      <span class="signal-tag">Informational or Downloadable Catalogues</span>
+      <span class="signal-tag">Ungated Site with Contact Us</span>
+      <span class="signal-tag">Request for Quote Functionality</span>
+      <span class="signal-tag">Risk-Averse but Open-Minded</span>
     </div>
   </div>
 
@@ -3914,14 +3882,16 @@ function checkPw() {
 <!-- ══════════ TIER 3 TAB ══════════ -->
 <div id="tab-t3" class="tab-content">
   <div class="tier-def">
-    <h2 style="color:var(--t3)">Tier 3 — BDR Nurture Cadence</h2>
-    <div class="desc">Operating B2B businesses with limited ecommerce signals. May not have a strong web presence; leadership and strategy unclear but still in business. Sells B2B and potentially DTC. Revenue typically &lt;$50M. BDR manages nurture sequences and monitors for trigger events (leadership changes, funding, RFPs) before escalating to AE.</div>
+    <h2 style="color:var(--t3)">Tier 3 — Accounts We're Unsure About</h2>
+    <div class="desc">Accounts that fit within ROE but show limited online commerce maturity. Majority rely on EDI or Big Box retail channels, making cost justification harder. Could have potential for Shopify Advanced as a starter plan. BDR manages nurture and monitors for trigger events before escalating to AE.</div>
     <div class="signals">
-      <span class="signal-tag">Operating Business</span>
-      <span class="signal-tag">B2B and/or DTC</span>
-      <span class="signal-tag">Limited Ecommerce Signals</span>
-      <span class="signal-tag">&lt;$50M Revenue</span>
-      <span class="signal-tag">BDR-Managed</span>
+      <span class="signal-tag">No D2C/B2B Checkout</span>
+      <span class="signal-tag">Majority EDI Sales</span>
+      <span class="signal-tag">Big Box Retailer Focus</span>
+      <span class="signal-tag">Fits ROE but Big Box Heavy</span>
+      <span class="signal-tag">Lack of Online Sales</span>
+      <span class="signal-tag">Potential for Advanced Starter</span>
+      <span class="signal-tag">Risk &amp; Cost Averse</span>
     </div>
   </div>
 
