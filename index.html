@@ -37,6 +37,39 @@ body {font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgro
 .stats-bar .stat {display:flex;gap:6px;align-items:center}
 .stat-dot {width:8px;height:8px;border-radius:50%}
 
+/* ── GUIDE ── */
+.guide-bar {
+  background:var(--surface);border-bottom:2px solid var(--border);
+  padding:0 32px;
+}
+.guide-toggle {
+  width:100%;display:flex;align-items:center;justify-content:space-between;
+  padding:12px 0;background:none;border:none;cursor:pointer;font-size:13px;
+  font-weight:600;color:var(--text);gap:8px;
+}
+.guide-toggle .guide-toggle-label {display:flex;align-items:center;gap:8px}
+.guide-toggle .guide-caret {font-size:11px;color:var(--muted);transition:transform .2s}
+.guide-toggle.open .guide-caret {transform:rotate(180deg)}
+.guide-body {display:none;padding-bottom:20px}
+.guide-body.open {display:block}
+.guide-section-title {font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:16px 0 10px}
+.guide-how-to {display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-bottom:4px}
+.guide-step {
+  background:var(--bg);border:1px solid var(--border);border-radius:8px;
+  padding:12px 14px;font-size:12px;line-height:1.55;color:var(--text);
+}
+.guide-step strong {display:block;font-size:12px;font-weight:700;margin-bottom:4px;color:var(--text)}
+.tier-cards {display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:768px){.tier-cards{grid-template-columns:1fr}}
+.tier-card {border-radius:8px;overflow:hidden;border:1px solid var(--border)}
+.tier-card-header {
+  padding:10px 14px;font-size:12px;font-weight:700;color:#fff;
+}
+.tier-card-sub {font-size:11px;font-weight:400;opacity:.85;margin-top:1px}
+.tier-card-body {background:var(--bg);padding:10px 14px}
+.tier-card-body ul {margin:0;padding:0 0 0 16px;list-style:disc}
+.tier-card-body li {font-size:12px;color:var(--text);line-height:1.6;padding:1px 0}
+
 /* ── TABS ── */
 .tab-nav {background:var(--surface);border-bottom:2px solid var(--border);padding:0 32px;display:flex;gap:0}
 .tab-btn {
@@ -326,6 +359,100 @@ body {font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgro
   <div class="stat"><span class="stat-dot" style="background:#6e40c9"></span><strong id="stat-t3">1416</strong>&nbsp;Tier 3</div>
   <div class="stat"><span class="stat-dot" style="background:#cf222e"></span><strong>34</strong>&nbsp;Tier 4 (removed)</div>
   <div style="margin-left:auto;font-size:11px">Notes & dismissals auto-saved to browser · Last generated: April 2026</div>
+</div>
+
+<!-- GUIDE -->
+<div class="guide-bar">
+  <button class="guide-toggle" onclick="toggleGuide(this)" aria-expanded="false">
+    <span class="guide-toggle-label">📖 <span>How to Use This Territory Plan</span></span>
+    <span class="guide-caret">▼</span>
+  </button>
+  <div class="guide-body" id="guide-body">
+
+    <div class="guide-section-title">Quick Reference — How to Use This Tool</div>
+    <div class="guide-how-to">
+      <div class="guide-step">
+        <strong>🔍 Reviewing an Account</strong>
+        Click the account name to open its Salesforce record. Use the LinkedIn link below the name to quickly research the company. Review the POV and context notes for background.
+      </div>
+      <div class="guide-step">
+        <strong>✏️ Adding Notes</strong>
+        Type directly into the AE Notes or BDR Notes fields — they save automatically to your browser as you type. No need to click Save.
+      </div>
+      <div class="guide-step">
+        <strong>↕️ Moving an Account to a Different Tier</strong>
+        Use the Tier dropdown on each row to move an account. It will immediately move to the correct tab. Use this as you review accounts and confirm which criteria they meet.
+      </div>
+      <div class="guide-step">
+        <strong>✕ Dismissing an Account</strong>
+        Check the ✕ box to hide an account once you've worked it. Toggle "Show dismissed" to bring it back if needed.
+      </div>
+      <div class="guide-step">
+        <strong>📅 Tier 2 Weekly Schedule</strong>
+        The Tier 2 tab has a week-by-week schedule (~5 accounts/week). Click a week to filter to just that week's accounts and stay focused.
+      </div>
+      <div class="guide-step">
+        <strong>🔄 Sharing Notes with Your BDR</strong>
+        Notes save to your browser only. Use <strong>Export My Notes</strong> to save a file, then send it to your BDR. They click <strong>Import Teammate Notes</strong> to merge your notes into their view.
+      </div>
+    </div>
+
+    <div class="guide-section-title">Tier Definitions — Use These to Verify Account Placement</div>
+    <div class="tier-cards">
+      <div class="tier-card">
+        <div class="tier-card-header" style="background:#1a7f37">
+          Tier 1 — Your "Goldmine" Accounts
+          <div class="tier-card-sub">AE-led · Highest priority</div>
+        </div>
+        <div class="tier-card-body">
+          <ul>
+            <li>Existing D2C and/or B2B Checkout</li>
+            <li>Customer Login Portal</li>
+            <li>Apply to be a Wholesale Partner section</li>
+            <li>Strike-Through Pricing or Volume Based Buying Options</li>
+            <li>Catalog PDPs</li>
+            <li>Dealer or Suppliers Section</li>
+            <li>Gated or Blended Format</li>
+            <li>Open Minded Buyers willing to envision a modern B2B solution</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tier-card">
+        <div class="tier-card-header" style="background:#0550ae">
+          Tier 2 — Potential, But Not Perfect
+          <div class="tier-card-sub">AE + BDR · ~5 accounts/week</div>
+        </div>
+        <div class="tier-card-body">
+          <ul>
+            <li>No existing D2C or B2B Checkout but offers alternative buying options</li>
+            <li>Sells to Big Box and SMB/MM merchants</li>
+            <li>Informational or Downloadable Catalogues</li>
+            <li>Ungated site but offers a Contact Us button</li>
+            <li>Request for Quote functionality</li>
+            <li>Risk Averse but open minded enough to explore a modern B2B solution</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tier-card">
+        <div class="tier-card-header" style="background:#6e40c9">
+          Tier 3 — Accounts We're Unsure About
+          <div class="tier-card-sub">BDR Nurture · Monitor for trigger events</div>
+        </div>
+        <div class="tier-card-body">
+          <ul>
+            <li>No existing D2C or B2B Checkout, alternative buying options only</li>
+            <li>Majority EDI sales (replenishment, forecasting, demand planning)</li>
+            <li>Mostly selling to Big Box retailers (EDI only)</li>
+            <li>Fits within ROE but may be more Big Box focused</li>
+            <li>Lack of online sales makes them cost-prohibitive</li>
+            <li>Could have potential for Shopify Advanced as a starter plan</li>
+            <li>Risk and Cost Averse — see the value but need significant validation</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </div>
 
 <!-- TAB NAV -->
@@ -18665,6 +18792,14 @@ function renderT3Page(page) {
   pageInfo.className = 'page-info';
   pageInfo.textContent = ` Page ${page} of ${totalPages}`;
   pag.appendChild(pageInfo);
+}
+
+// ─── GUIDE TOGGLE ─────────────────────────────────────────────────────────────
+function toggleGuide(btn) {
+  const body = document.getElementById('guide-body');
+  const open = body.classList.toggle('open');
+  btn.classList.toggle('open', open);
+  btn.setAttribute('aria-expanded', open);
 }
 
 // ─── INIT ────────────────────────────────────────────────────────────────────
